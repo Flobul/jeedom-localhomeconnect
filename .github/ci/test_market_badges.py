@@ -72,6 +72,26 @@ class MarketBadgesTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, "invalid result"):
                 market_badges.plugin_data(123)
 
+    def test_plugin_data_falls_back_to_public_display_page(self):
+        forbidden = urllib.error.HTTPError("https://market.jeedom.com/core/ajax/market.ajax.php", 403, "Forbidden", {}, None)
+        display = '''
+            <script>var id = "4696";</script>
+            <script>var logical_id = "localhomeconnect";</script>
+            <div class="info-row"><div class="typeInfo">Installations</div><div class="infoInfo">11</div></div>
+            <div class="info-row"><div class="typeInfo">Prix</div><div class="infoInfo">Gratuit</div></div>
+            <div class="rating-display"><span>0 Note</span></div>
+        '''
+        with mock.patch.object(market_badges, "fetch", side_effect=[forbidden, display]):
+            market_badges.plugin_data.cache_clear()
+            data = market_badges.plugin_data(4696)
+        self.assertEqual(data["logicalId"], "localhomeconnect")
+        self.assertEqual(data["cost"], 0)
+        self.assertEqual(data["nbInstall"], 11)
+
+    def test_installation_count_is_rendered_when_available(self):
+        lines = market_badges.badges({"id": 4696, "rate": {}, "cost": 0, "nbInstall": 11})
+        self.assertTrue(any("Installations-11-blueviolet" in line for line in lines))
+
     def test_zero_rating_with_votes_is_not_reported_as_no_review(self):
         lines = market_badges.badges({
             "id": 1,

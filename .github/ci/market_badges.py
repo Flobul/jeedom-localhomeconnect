@@ -12,6 +12,7 @@ never turn a repository red.
 """
 from __future__ import annotations
 
+import html
 import json
 import re
 import sys
@@ -133,10 +134,55 @@ def resolve_market_id(info: dict, config: dict) -> tuple[int | None, str]:
     return None, f"not published (name={name!r}, id={info.get('id')!r})"
 
 
+def display_plugin_data(market_id: int) -> dict:
+    """Read the public display page when the AJAX endpoint requires a CSRF token."""
+    page = fetch(DISPLAY + str(market_id))
+    logical = re.search(r'var\s+logical_id\s*=\s*["\']([^"\']+)', page)
+    displayed_id = re.search(r'var\s+id\s*=\s*["\'](\d+)', page)
+    if not logical or not displayed_id or int(displayed_id.group(1)) != market_id:
+        raise RuntimeError("public market page does not expose the expected plugin identity")
+
+    fields = {}
+    for match in re.finditer(
+        r'<div class="info-row">.*?<div class="typeInfo">(.*?)</div>.*?'
+        r'<div class="infoInfo">(.*?)</div>.*?</div>',
+        page,
+        re.S,
+    ):
+        label = html.unescape(re.sub(r'<[^>]+>', '', match.group(1))).strip()
+        value = html.unescape(re.sub(r'<[^>]+>', '', match.group(2))).strip()
+        fields[label] = value
+
+    installations = re.sub(r'\D', '', fields.get('Installations', ''))
+    price_text = fields.get('Prix', '')
+    price_match = re.search(r'(\d+(?:[.,]\d+)?)', price_text)
+    cost = 0 if normalize(price_text) == 'gratuit' else (
+        float(price_match.group(1).replace(',', '.')) if price_match else None
+    )
+    votes_match = re.search(r'(\d+)\s+Note', page, re.I)
+    rating_match = re.search(r'(\d+(?:[.,]\d+)?)\s+sur\s+5', page, re.I)
+
+    return {
+        'id': market_id,
+        'logicalId': logical.group(1),
+        'cost': cost,
+        'rate': {
+            'rating': float(rating_match.group(1).replace(',', '.')) if rating_match else 0,
+            'nb': int(votes_match.group(1)) if votes_match else 0,
+        },
+        'nbInstall': int(installations) if installations else None,
+    }
+
+
 @lru_cache(maxsize=128)
 def plugin_data(market_id: int) -> dict:
     payload = urllib.parse.urlencode({"action": "get", "id": market_id}).encode()
-    document = json.loads(fetch(AJAX, payload))
+    try:
+        document = json.loads(fetch(AJAX, payload))
+    except urllib.error.HTTPError as error:
+        if error.code == 403:
+            return display_plugin_data(market_id)
+        raise
     if document.get("state") != "ok":
         raise RuntimeError(f"state={document.get('state')} result={document.get('result')}")
     result = document.get("result")
@@ -184,6 +230,10 @@ def badges(data: dict) -> list[str]:
         buyers = number(data.get("buyer"))
     if buyers is not None:
         lines.append(badge("Achats", count(buyers), "blueviolet", link))
+
+    installations = number(data.get("nbInstall"))
+    if installations is not None:
+        lines.append(badge("Installations", count(installations), "blueviolet", link))
 
     downloads = number(data.get("downloaded"))
     if downloads is not None:

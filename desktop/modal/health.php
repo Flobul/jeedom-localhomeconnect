@@ -113,7 +113,7 @@ foreach ($eqLogics as $eqLogic) {
             <div class="localhomeconnect-health-tools">
                 <span class="localhomeconnect-health-result-count" data-health-result-count aria-live="polite"></span>
                 <label class="localhomeconnect-health-search" for="localhomeconnectHealthSearch"><i class="fas fa-search"></i><input id="localhomeconnectHealthSearch" type="search" class="form-control" placeholder="{{Rechercher un équipement}}" aria-label="{{Rechercher dans la vue active}}" autocomplete="off"></label>
-                <button type="button" class="localhomeconnect-health-clear" data-health-clear hidden title="{{Effacer la recherche}}" aria-label="{{Effacer la recherche}}"><i class="fas fa-times"></i></button>
+                <button type="button" class="localhomeconnect-health-clear" data-health-clear hidden data-title="{{Effacer la recherche}}" aria-label="{{Effacer la recherche}}"><i class="fas fa-times"></i></button>
             </div>
         </div>
         <div id="localhomeconnectHealthEquipmentPanel" class="localhomeconnect-health-view is-active" data-health-panel="equipment" role="tabpanel" aria-labelledby="localhomeconnectHealthEquipmentTab">
@@ -162,7 +162,7 @@ foreach ($eqLogics as $eqLogic) {
                                         <div><dt>{{Transport}}</dt><dd><?=localhomeconnectHealthEscape($runtime['transport'] ?? $eqLogic->getConfiguration('connection_type', ''))?></dd></div>
                                         <div><dt>{{Profil importé le}}</dt><dd><?=localhomeconnectHealthEscape($profile['importedAt'] ?? '—')?></dd></div>
                                     </dl>
-                                    <button type="button" class="btn btn-default btn-xs localhomeconnect-health-test bt_testHealthLocalHomeConnect" data-eqlogic_id="<?=(int) $eqLogic->getId()?>" title="{{Tester la communication}}"><i class="fas fa-satellite-dish"></i> {{Tester la communication}}</button>
+                                    <button type="button" class="btn btn-default btn-xs localhomeconnect-health-test bt_testHealthLocalHomeConnect" data-eqlogic_id="<?=(int) $eqLogic->getId()?>" data-title="{{Tester la communication}}"><i class="fas fa-satellite-dish"></i> {{Tester la communication}}</button>
                                 </td>
                                 <td data-label="{{Activité}}">
                                     <dl class="localhomeconnect-health-details">

@@ -4,6 +4,7 @@ REQUESTED_PROGRESS_FILE="${1:-dependance}"
 BASEDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 PLUGIN=$(basename "$(realpath "$BASEDIR/..")")
 PROGRESS_FILENAME=$(basename "$REQUESTED_PROGRESS_FILE")
+export PLUGIN PROGRESS_FILENAME
 NODE_DIR="$BASEDIR/node"
 LIBRARY_URL="https://raw.githubusercontent.com/NebzHB/dependance.lib/master"
 

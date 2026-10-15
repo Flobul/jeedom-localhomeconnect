@@ -913,7 +913,7 @@ class LocalHomeConnectCloudService
      * Transforme un écran interactif SingleKey en diagnostic exploitable.
      *
      * @param string $html Réponse HTML, jamais journalisée.
-     * @return void
+     * @return never
      */
     private function throwInteractiveLoginRequired($html)
     {

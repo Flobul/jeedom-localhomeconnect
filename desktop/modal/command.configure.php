@@ -215,7 +215,7 @@ function localhomeconnectCommandEscape($value)
     const row = document.createElement("tr");
     row.innerHTML = '<td><input type="text" class="form-control input-sm lhc-state-raw"></td>'
       + '<td><input type="text" class="form-control input-sm lhc-state-label"></td>'
-      + '<td class="text-center"><button type="button" class="btn btn-danger btn-xs bt-lhc-state-remove" title="{{Retirer}}"><i class="fas fa-minus-circle"></i></button></td>';
+      + '<td class="text-center"><button type="button" class="btn btn-danger btn-xs bt-lhc-state-remove" data-title="{{Retirer}}"><i class="fas fa-minus-circle"></i></button></td>';
     row.querySelector(".lhc-state-raw").value = raw === undefined ? "" : raw;
     row.querySelector(".lhc-state-label").value = label === undefined ? "" : label;
     byId("tb_lhcCommandStates").appendChild(row);

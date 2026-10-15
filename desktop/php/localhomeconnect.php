@@ -35,8 +35,8 @@ foreach ((array) ($daemon['devices'] ?? array()) as $runtime) {
         <div class="input-group localhomeconnect-search">
             <input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchEqlogic">
             <span class="input-group-btn">
-                <button type="button" id="bt_resetSearch" class="btn btn-default" title="{{Réinitialiser}}"><i class="fas fa-times"></i></button>
-                <button type="button" id="bt_pluginDisplayAsTable" class="btn btn-default roundedRight hidden" data-coreSupport="1" data-state="0" title="{{Afficher en tableau}}"><i class="fas fa-grip-lines"></i></button>
+                <button type="button" id="bt_resetSearch" class="btn btn-default" data-title="{{Réinitialiser}}"><i class="fas fa-times"></i></button>
+                <button type="button" id="bt_pluginDisplayAsTable" class="btn btn-default roundedRight hidden" data-coreSupport="1" data-state="0" data-title="{{Afficher en tableau}}"><i class="fas fa-grip-lines"></i></button>
             </span>
         </div>
         <div class="eqLogicThumbnailContainer">
@@ -62,8 +62,8 @@ foreach ((array) ($daemon['devices'] ?? array()) as $runtime) {
                     . __('Transport', __FILE__) . ' : ' . ($transport !== '' ? $transport : '-') . '<br>'
                     . __('État', __FILE__) . ' : ' . $statusLabel;
                 ?>
-                <div class="eqLogicDisplayCard cursor localhomeconnect-equipment-card <?php echo $enabled ? '' : 'disableCard'; ?>" data-eqLogic_id="<?php echo (int) $eqLogic->getId(); ?>" title="<?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?>">
-                    <span class="localhomeconnect-card-status <?php echo $statusClass; ?>" title="<?php echo htmlspecialchars($statusLabel, ENT_QUOTES, 'UTF-8'); ?>">
+                <div class="eqLogicDisplayCard cursor localhomeconnect-equipment-card <?php echo $enabled ? '' : 'disableCard'; ?>" data-eqLogic_id="<?php echo (int) $eqLogic->getId(); ?>" data-title="<?php echo htmlspecialchars($title, ENT_QUOTES, 'UTF-8'); ?>">
+                    <span class="localhomeconnect-card-status <?php echo $statusClass; ?>" data-title="<?php echo htmlspecialchars($statusLabel, ENT_QUOTES, 'UTF-8'); ?>">
                         <i class="fas <?php echo $statusIcon; ?>"></i>
                     </span>
                     <img class="localhomeconnect-card-logo" src="<?php echo htmlspecialchars($eqLogic->getPathLogo(), ENT_QUOTES, 'UTF-8'); ?>" onerror="this.src='plugins/localhomeconnect/plugin_info/localhomeconnect_icon.svg'" alt="">
@@ -77,15 +77,15 @@ foreach ((array) ($daemon['devices'] ?? array()) as $runtime) {
                         <span><?php echo htmlspecialchars($typeLabel, ENT_QUOTES, 'UTF-8'); ?></span>
                         <?php if ($model !== '') { ?><span><?php echo htmlspecialchars($model, ENT_QUOTES, 'UTF-8'); ?></span><?php } ?>
                         <?php if (!$enabled) { ?>
-                            <i class="fas fa-pause" title="{{Désactivé}}"></i>
+                            <i class="fas fa-pause" data-title="{{Désactivé}}"></i>
                         <?php } else {
                             echo $online
-                                ? '<i class="fas fa-heartbeat text-success" title="{{Prêt}}"></i>'
-                                : '<i class="fas fa-unlink text-danger" title="{{Hors ligne}}"></i>';
+                                ? '<i class="fas fa-heartbeat text-success" data-title="{{Prêt}}"></i>'
+                                : '<i class="fas fa-unlink text-danger" data-title="{{Hors ligne}}"></i>';
                         } ?>
-                        <?php echo $eqLogic->getIsEnable() ? '<i class="far fa-check-square" title="{{Équipement activé}}"></i>' : '<i class="far fa-square" title="{{Équipement non activé}}"></i>'; ?>
-                        <?php echo $eqLogic->getIsVisible() ? '<i class="fas fa-eye" title="{{Équipement visible}}"></i>' : '<i class="fas fa-eye-slash" title="{{Équipement non visible}}"></i>'; ?>
-                        <?php echo (int) $eqLogic->getDisplay('widgetTmpl', 1) === 1 ? '<i class="fas jeedomapp-design-jeedom" title="{{Widget LocalHomeConnect}}"></i>' : '<i class="fas jeedomapp-home-jeedom" title="{{Widget Jeedom}}"></i>'; ?>
+                        <?php echo $eqLogic->getIsEnable() ? '<i class="far fa-check-square" data-title="{{Équipement activé}}"></i>' : '<i class="far fa-square" data-title="{{Équipement non activé}}"></i>'; ?>
+                        <?php echo $eqLogic->getIsVisible() ? '<i class="fas fa-eye" data-title="{{Équipement visible}}"></i>' : '<i class="fas fa-eye-slash" data-title="{{Équipement non visible}}"></i>'; ?>
+                        <?php echo (int) $eqLogic->getDisplay('widgetTmpl', 1) === 1 ? '<i class="fas jeedomapp-design-jeedom" data-title="{{Widget LocalHomeConnect}}"></i>' : '<i class="fas jeedomapp-home-jeedom" data-title="{{Widget Jeedom}}"></i>'; ?>
                     </span>
                 </div>
             <?php } ?>

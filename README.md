@@ -6,6 +6,12 @@
 [![Open issues](https://img.shields.io/badge/Open_issues-0-brightgreen?style=flat-square)](https://github.com/Flobul/jeedom-localhomeconnect/issues)
 [![Open pull requests](https://img.shields.io/badge/Open_pull_requests-0-brightgreen?style=flat-square)](https://github.com/Flobul/jeedom-localhomeconnect/pulls)
 
+<!-- market-badges:start -->
+[![Note](https://img.shields.io/badge/Note-Aucun%20avis-lightgrey?style=flat-square)](https://market.jeedom.com/index.php?v=d&p=market_display&id=4696)
+[![Prix](https://img.shields.io/badge/Prix-Gratuit-brightgreen?style=flat-square)](https://market.jeedom.com/index.php?v=d&p=market_display&id=4696)
+[![Installations](https://img.shields.io/badge/Installations-11-blueviolet?style=flat-square)](https://market.jeedom.com/index.php?v=d&p=market_display&id=4696)
+<!-- market-badges:end -->
+
 Retrouvez vos appareils Bosch, Siemens et autres marques du groupe BSH compatibles Home Connect dans Jeedom : four, lave-vaisselle, lave-linge, table de cuisson…
 
 Suivez leur état, recevez leurs mises à jour en temps réel et utilisez les commandes disponibles selon le modèle. Après la configuration initiale, Jeedom communique directement avec vos appareils sur votre réseau local, sans passer par le cloud Home Connect.
@@ -36,5 +42,5 @@ En cas de difficulté, ouvrez **Santé** pour vérifier les connexions et utilis
 ## Besoin d’aide ?
 
 - [Documentation et dépannage](docs/fr_FR/index.md)
-- [Historique des versions](CHANGELOG.md)
+- [Historique des versions](docs/CHANGELOG.md)
 - [Communauté Jeedom](https://community.jeedom.com/tag/plugin-localhomeconnect)

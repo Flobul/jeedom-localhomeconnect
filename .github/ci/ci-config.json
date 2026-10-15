@@ -49,5 +49,8 @@
   },
   "coverage": {
     "browser_ui": "not-covered-by-static-ci"
+  },
+  "market": {
+    "id": 4696
   }
 }

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.11.0
+
+- Réorganisation interne du plugin et alignement de la version du démon Node avec celle déclarée par Jeedom.
+- Contrôles CI fiabilisés : analyse PHPStan, clés de capacités uniques, tooltips Jeedom modernes et script d’installation validé par ShellCheck.
+- Informations publiques du plugin Market ajoutées au README avec mise à jour automatique depuis la fiche officielle.
+
 ## 0.10.6
 
 - Les noms personnalisés des commandes Jeedom sont désormais conservés lors des synchronisations : le nom calculé par le plugin n'est appliqué qu'à la création. Les commandes d'information, les actions d'écriture, les favoris et les commandes de programme gardent ainsi leur nom manuel et leur identifiant Jeedom.
