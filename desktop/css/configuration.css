@@ -15,7 +15,7 @@
     padding: 28px 30px;
     border-radius: 16px;
     color: #fff;
-    background: linear-gradient(125deg, var(--localhomeconnect-accent-dark) 0%, var(--localhomeconnect-accent) 48%, var(--localhomeconnect-blue) 135%);
+    background: linear-gradient(125deg, #4638f0 0%, #FFFFFF 100%);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
 }
 
@@ -289,4 +289,32 @@
 #configuration_plugin_localhomeconnect input:focus-visible { outline: 2px solid var(--localhomeconnect-blue); outline-offset: 2px; }
 @media (max-width: 560px) {
     #configuration_plugin_localhomeconnect .localhomeconnect-config-logo { flex-basis: 58px; }
+}
+
+/* Harmonisation de l’alignement des métadonnées (trame Creality Box). */
+#configuration_plugin_localhomeconnect .localhomeconnect-config-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 18px 28px;
+}
+
+#configuration_plugin_localhomeconnect .localhomeconnect-config-meta {
+    align-self: center;
+    justify-content: flex-end;
+    margin-top: 0;
+}
+
+#configuration_plugin_localhomeconnect .localhomeconnect-config-links {
+    grid-column: 1 / -1;
+}
+
+@media (max-width: 760px) {
+    #configuration_plugin_localhomeconnect .localhomeconnect-config-hero {
+        grid-template-columns: 1fr;
+    }
+
+    #configuration_plugin_localhomeconnect .localhomeconnect-config-meta {
+        justify-content: flex-start;
+    }
 }

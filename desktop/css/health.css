@@ -25,7 +25,7 @@
     padding: 22px 24px;
     border-radius: 16px;
     color: #fff;
-    background: linear-gradient(125deg, #17617d, #168db5 48%, var(--localhomeconnect-health-blue) 135%);
+    background: linear-gradient(125deg, #4638f0 0%, #FFFFFF 100%);
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
 }
 
@@ -236,6 +236,9 @@
 
 #div_healthLocalHomeConnect .localhomeconnect-health-tab.is-active span {
     background: rgba(255, 255, 255, 0.22);
+}
+[data-theme="core2019_Dark"] #div_healthLocalHomeConnect .localhomeconnect-health-tab.is-active span {
+    background: rgba(255, 255, 255, 0.12);
 }
 
 #div_healthLocalHomeConnect .localhomeconnect-health-tools {

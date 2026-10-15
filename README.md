@@ -1,4 +1,10 @@
-# LocalHomeConnect pour Jeedom
+# Local Home Connect pour Jeedom
+
+[![License](https://img.shields.io/badge/License-AGPL--3.0-blue?style=flat-square)](https://github.com/Flobul/jeedom-localhomeconnect/blob/HEAD/LICENSE)
+[![Language](https://img.shields.io/badge/Language-PHP-informational?style=flat-square)](https://github.com/Flobul/jeedom-localhomeconnect)
+[![Last commit](https://img.shields.io/badge/Last_commit-04/10/2026-brightgreen?style=flat-square)](https://github.com/Flobul/jeedom-localhomeconnect/commits)
+[![Open issues](https://img.shields.io/badge/Open_issues-0-brightgreen?style=flat-square)](https://github.com/Flobul/jeedom-localhomeconnect/issues)
+[![Open pull requests](https://img.shields.io/badge/Open_pull_requests-0-brightgreen?style=flat-square)](https://github.com/Flobul/jeedom-localhomeconnect/pulls)
 
 Retrouvez vos appareils Bosch, Siemens et autres marques du groupe BSH compatibles Home Connect dans Jeedom : four, lave-vaisselle, lave-linge, table de cuisson…
 

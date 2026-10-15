@@ -1336,7 +1336,7 @@
         "Réponse invalide du démon": "Invalid response from the daemon",
         "Session Home Connect invalide": "Invalid Home Connect session",
         "Stockage privé": "Private storage",
-        "Synchronisation de %s : %d commande(s) devenue(s) obsolète(s), %d restaurée(s)": "Synchronizing %s: % d commands have become obsolete, % d have been restored",
+        "Synchronisation de %s : %d commande(s) devenue(s) obsolète(s), %d restaurée(s)": "Synchronizing %s: %d commands have become obsolete, %d have been restored",
         "Type d’événement inconnu": "Unknown event type",
         "Ventilation": "Ventilation",
         "Verrouillage de la session Home Connect impossible": "Unable to lock the Home Connect session",

@@ -22,7 +22,7 @@ foreach ((array) ($daemon['devices'] ?? array()) as $runtime) {
         <legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
         <div class="eqLogicThumbnailContainer">
             <div class="cursor eqLogicAction logoSecondary" data-action="gotoPluginConf"><i class="fas fa-wrench"></i><br><span>{{Configuration}}</span></div>
-            <div class="cursor logoSecondary" id="bt_healthLocalHomeConnect"><i class="fas fa-medkit"></i><br><span>{{Santé}}</span></div>
+            <div class="cursor logoSecondary" id="bt_healthLocalHomeConnect"><i class="fas fa-heartbeat"></i><br><span>{{Santé}}</span></div>
             <div class="cursor logoPrimary" id="bt_discoverLocalHomeConnect"><i class="fas fa-broadcast-tower"></i><br><span>{{Découvrir}}</span></div>
         </div>
 

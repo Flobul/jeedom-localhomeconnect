@@ -135,7 +135,7 @@ foreach ($eqLogics as $eqLogic) {
                             $isEnabled = (bool) $eqLogic->getIsEnable();
                             $isOnline = $isEnabled && !empty($runtime['connected']);
                             $profile = $profileById[(string) $eqLogic->getConfiguration('profile_id', '')] ?? array();
-                            $stateLabel = !$isEnabled ? '{{Désactivé}}' : ($isOnline ? '{{Prêt}}' : (!empty($runtime['connecting']) ? '{{Connexion}}' : '{{Hors ligne}}'));
+                            $stateLabel = !$isEnabled ? __('Désactivé', __FILE__) : ($isOnline ? __('Prêt', __FILE__) : (!empty($runtime['connecting']) ? __('Connexion', __FILE__) : __('Hors ligne', __FILE__)));
                             $stateClass = !$isEnabled ? 'muted' : ($isOnline ? 'success' : (!empty($runtime['connecting']) ? 'warning' : 'danger'));
                             $stateIcon = !$isEnabled ? 'fa-pause-circle' : ($isOnline ? 'fa-wifi' : (!empty($runtime['connecting']) ? 'fa-sync-alt' : 'fa-exclamation-circle'));
                             $lastSeen = $runtime['lastSeen'] ?? $eqLogic->getStatus('lastCommunication', '') ?: '—';

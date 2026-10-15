@@ -849,7 +849,7 @@ class LocalHomeConnectCapabilities
                 )
             ) ,
             'ConsumerProducts.CoffeeMaker.Program.CoffeeWorld.Verlaengerter' => array(
-                'name' => "Verlängerter" ,
+                'name' => __('Verlängerter', __FILE__) ,
                 'action' => 'Program',
                 'available' => array(
                     'CoffeeMaker'
@@ -872,7 +872,7 @@ class LocalHomeConnectCapabilities
             'ConsumerProducts.CoffeeMaker.Program.CoffeeWorld.FlatWhite' => array(
                 // « Flat White » est un nom de boisson, pas un mot français :
                 // « Blanc pur » était une traduction littérale sans sens ici.
-                'name' => "Flat White" ,
+                'name' => __('Flat White', __FILE__) ,
                 'action' => 'Program',
                 'available' => array(
                     'CoffeeMaker'
