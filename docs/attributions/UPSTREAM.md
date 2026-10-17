@@ -8,4 +8,4 @@ Le protocole local Home Connect n'est pas documenté publiquement par BSH. Cette
 - `eifel-tech/ioBroker.cloudless-homeconnect` — parcours OAuth PKCE Home Connect/SingleKey côté serveur et récupération des profils IDDF.
 - `NebzHB/dependance.lib` — installation contrôlée de la version Node.js requise dans l’environnement Jeedom.
 
-Les notices MIT des projets sont conservées dans ce répertoire. Le code du plugin reste distribué sous AGPL-3.0-or-later.
+Les notices MIT des projets sont conservées dans ce répertoire. Le code du plugin reste distribué sous GPL-3.0-or-later.

@@ -1,10 +1,10 @@
 # Local Home Connect pour Jeedom
 
-[![License](https://img.shields.io/badge/License-AGPL--3.0-blue?style=flat-square)](https://github.com/Flobul/jeedom-localhomeconnect/blob/HEAD/LICENSE)
-[![Language](https://img.shields.io/badge/Language-PHP-informational?style=flat-square)](https://github.com/Flobul/jeedom-localhomeconnect)
-[![Last commit](https://img.shields.io/badge/Last_commit-04/10/2026-brightgreen?style=flat-square)](https://github.com/Flobul/jeedom-localhomeconnect/commits)
-[![Open issues](https://img.shields.io/badge/Open_issues-0-brightgreen?style=flat-square)](https://github.com/Flobul/jeedom-localhomeconnect/issues)
-[![Open pull requests](https://img.shields.io/badge/Open_pull_requests-0-brightgreen?style=flat-square)](https://github.com/Flobul/jeedom-localhomeconnect/pulls)
+[![Licence](https://img.shields.io/badge/Licence-GPL--3.0-blue?style=flat-square)](https://github.com/Flobul/jeedom-localhomeconnect/blob/HEAD/LICENSE)
+[![Langage](https://img.shields.io/badge/Langage-PHP-informational?style=flat-square)](https://github.com/Flobul/jeedom-localhomeconnect)
+[![Dernière mise à jour](https://img.shields.io/badge/Derniere_mise_a_jour-04/10/2026-brightgreen?style=flat-square)](https://github.com/Flobul/jeedom-localhomeconnect/commits)
+[![Tickets ouverts](https://img.shields.io/badge/Tickets_ouverts-0-brightgreen?style=flat-square)](https://github.com/Flobul/jeedom-localhomeconnect/issues)
+[![Demandes de fusion ouvertes](https://img.shields.io/badge/Demandes_de_fusion_ouvertes-0-brightgreen?style=flat-square)](https://github.com/Flobul/jeedom-localhomeconnect/pulls)
 
 <!-- market-badges:start -->
 [![Note](https://img.shields.io/badge/Note-Aucun%20avis-lightgrey?style=flat-square)](https://market.jeedom.com/index.php?v=d&p=market_display&id=4696)
@@ -44,3 +44,23 @@ En cas de difficulté, ouvrez **Santé** pour vérifier les connexions et utilis
 - [Documentation et dépannage](docs/fr_FR/index.md)
 - [Historique des versions](docs/CHANGELOG.md)
 - [Communauté Jeedom](https://community.jeedom.com/tag/plugin-localhomeconnect)
+
+## Documentation
+
+La documentation détaillée est disponible dans [docs/fr_FR/index.md](docs/fr_FR/index.md).
+
+## Sécurité
+
+Consultez la [politique de sécurité](SECURITY.md) avant de transmettre un rapport ou des journaux. Ne publiez jamais de secret, de jeton ou de mot de passe dans une issue publique.
+
+## Licence
+
+Ce projet est distribué sous licence **GPL-3.0**. Consultez le fichier [LICENSE](LICENSE) pour le texte complet.
+
+---
+
+<p align="center">
+  <a href="https://github.com/sponsors/Flobul">
+    <img src="https://img.shields.io/badge/Sponsoriser%20ce%20projet-%E2%9D%A4-EA4AAA?style=for-the-badge&logo=githubsponsors" alt="Sponsoriser ce projet sur GitHub">
+  </a>
+</p>
