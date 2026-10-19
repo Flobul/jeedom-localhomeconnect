@@ -9,7 +9,7 @@
 <!-- market-badges:start -->
 [![Note](https://img.shields.io/badge/Note-Aucun%20avis-lightgrey?style=flat-square)](https://market.jeedom.com/index.php?v=d&p=market_display&id=4696)
 [![Prix](https://img.shields.io/badge/Prix-Gratuit-brightgreen?style=flat-square)](https://market.jeedom.com/index.php?v=d&p=market_display&id=4696)
-[![Installations](https://img.shields.io/badge/Installations-12-blueviolet?style=flat-square)](https://market.jeedom.com/index.php?v=d&p=market_display&id=4696)
+[![Installations](https://img.shields.io/badge/Installations-11-blueviolet?style=flat-square)](https://market.jeedom.com/index.php?v=d&p=market_display&id=4696)
 <!-- market-badges:end -->
 
 Retrouvez vos appareils Bosch, Siemens et autres marques du groupe BSH compatibles Home Connect dans Jeedom : four, lave-vaisselle, lave-linge, table de cuisson…
