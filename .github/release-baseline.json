@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "plugin_id": "localhomeconnect",
+  "class_file": "core/class/localhomeconnect.class.php",
+  "reference_version": "0.11.0",
+  "reference_commit": "d4638fb7a678551993f31dc902b80315313818bf"
+}

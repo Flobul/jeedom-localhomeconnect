@@ -1,6 +1,8 @@
 # Changelog
 
-## 0.11.0
+## Non publié
+
+## Version 0.11.0 (15/10/2026)
 
 - Réorganisation interne du plugin et alignement de la version du démon Node avec celle déclarée par Jeedom.
 - Contrôles CI fiabilisés : analyse PHPStan, clés de capacités uniques, tooltips Jeedom modernes et script d’installation validé par ShellCheck.
@@ -13,6 +15,15 @@
 - Libellés officiels des boissons des machines à café repris par identifiant de programme, pour les deux familles « Beverages Classic » et « Beverages Coffee World » : une machine configurée en allemand annonçait « Flat White » et « Verlängerter », traduits à tort en « Blanc pur » et « Rallongé ». Les identifiants de programme étant universels, ces libellés sont désormais ceux de la liste officielle, quelle que soit la langue de l'appareil.
 - Version du paquet du démon réalignée sur la version du plugin ; le manifeste Node était resté en `0.10.2` alors que le plugin et son verrou de dépendances étaient en `0.10.5`.
 - Valeurs par défaut confiées à `core/config/localhomeconnect.config.ini` : `localhomeconnect_install()` n'écrit plus les huit `config::save()` qui dupliquaient ce fichier, et `localhomeconnect_update()` ne réécrit plus le port, les trois intervalles ni `app_name` et `callback_verify_tls` à chaque mise à jour. Seules restent les opérations qui ne peuvent pas être exprimées par ce fichier : la protection du stockage privé, le réenregistrement des secrets pour `$_encryptConfigKey`, la suppression des clés devenues obsolètes et le rechargement du démon.
+
+## 0.10.5
+
+- Programme courant restitué sur les appareils qui n'exposent pas `/ro/selectedProgram` ni `/ro/activeProgram` (code 404 sur ces ressources, machines à café notamment) : le pointeur est désormais lu dans le flux de valeurs `/ro/allMandatoryValues`, résolu par le nom de la fonction XML — la méthode retenue par hcpy, homeconnect_local_hass et go-homeconnect2mqtt. Les ressources dédiées ne sont plus qu'une source supplémentaire. Une valeur scalaire sur un uid ordinaire n'est jamais interprétée comme un programme.
+- Enveloppe `{length, list:[…]}` également déballée pour extraire le programme : les appareils qui publient le programme courant uniquement dans un conteneur de valeurs sont pris en charge, le nom de la fonction portant le programme étant journalisé en debug.
+- Uid porteur d'un conteneur retiré des UID annoncés : la commande correspondante était alimentée une fois par un JSON brut puis figée, la valeur erronée restant affichée indéfiniment. Elle est désormais déclarée obsolète et masquée à la synchronisation.
+- Curseurs élargis à la plus large borne annoncée par l'appareil : une machine à café limite la contenance selon la boisson, 35 ml pour un espresso contre 200 ml ou plus pour un café allongé ou de l'eau chaude. Le curseur « Contenance » conservait la borne courante et bloquait les autres boissons ; il monte désormais à la borne la plus large déjà annoncée, la validation d'écriture restant alignée sur le programme sélectionné.
+- « Flat White » n'est plus traduit par « Blanc pur », traduction littérale sans sens pour ce nom de boisson.
+- Propriétés textuelles à nouveau acceptées à l'écriture lorsque l'appareil annonce des bornes nulles : `/ro/descriptionChange` renseigne `min`, `max` et `step` à `null` pour les propriétés non numériques, et `Number(null)` valant 0, elles étaient lues comme une borne nulle. La propriété était alors classée « nombre » et toute écriture de texte était refusée avec « attend un nombre », comme sur `ConsumerProducts.CoffeeMaker.Option.DisplayName`.
 
 ## 0.10.4
 
@@ -37,6 +48,10 @@ Correction du blocage du démon "Importez au moins un profil" : lorsque des pro
 ## 0.10.1
 
 - Collision de noms de commandes corrigée sur les fours exposant des états par cavité, notamment le Siemens HR776G3B1 : suffixes « Cavité 1 » et « Cavité 1 (serveur) » pour distinguer les programmes, éclairages et événements et permettre la création des commandes de programme globales.
+
+## 0.10.0
+
+- Première version complète.
 
 ## 0.1.0
 - Première version du plugin LocalHomeConnect.
