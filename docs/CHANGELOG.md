@@ -2,6 +2,8 @@
 
 ## Non publié
 
+
+- Ajout d’un accès Community avec aperçu et diagnostic facultatif limité à des compteurs non sensibles.
 ## Version 0.11.0 (15/10/2026)
 
 - Réorganisation interne du plugin et alignement de la version du démon Node avec celle déclarée par Jeedom.

@@ -21,6 +21,13 @@ foreach ((array) ($daemon['devices'] ?? array()) as $runtime) {
     <div class="col-xs-12 eqLogicThumbnailDisplay">
         <legend><i class="fas fa-cog"></i> {{Gestion}}</legend>
         <div class="eqLogicThumbnailContainer">
+            <?php if (version_compare((string) jeedom::version(), '4.4.0', '>=')) { ?>
+                <div class="cursor eqLogicAction logoSecondary" data-action="createCommunityPost" data-plugin_id="localhomeconnect" role="button" tabindex="0" aria-label="{{Créer un sujet d'assistance sur Community Jeedom}}">
+                    <i class="fas fa-comments"></i>
+                    <br>
+                    <span style="color:var(--txt-color)">{{Community}}</span>
+                </div>
+            <?php } ?>
             <div class="cursor eqLogicAction logoSecondary" data-action="gotoPluginConf"><i class="fas fa-wrench"></i><br><span>{{Configuration}}</span></div>
             <div class="cursor logoSecondary" id="bt_healthLocalHomeConnect"><i class="fas fa-heartbeat"></i><br><span>{{Santé}}</span></div>
             <div class="cursor logoPrimary" id="bt_discoverLocalHomeConnect"><i class="fas fa-broadcast-tower"></i><br><span>{{Découvrir}}</span></div>
@@ -158,6 +165,7 @@ foreach ((array) ($daemon['devices'] ?? array()) as $runtime) {
         </div>
     </div>
 </div>
+<?php include_file('desktop', 'community', 'js', 'localhomeconnect'); ?>
 
 <?php include_file('desktop', 'localhomeconnect', 'js', 'localhomeconnect'); ?>
 <?php include_file('core', 'plugin.template', 'js'); ?>
