@@ -20,35 +20,77 @@ require_once __DIR__ . '/LocalHomeConnectStorage.php';
 class localhomeconnect extends eqLogic
 {
 
-    /**
-     * Return privacy-safe aggregate diagnostics for a Community support post.
-     */
     public static function getConfigForCommunity($_separator = '<br>')
     {
-        $equipments = eqLogic::byType(__CLASS__);
-        $enabled = 0;
-        $commands = 0;
-
-        foreach ($equipments as $equipment) {
-            if ((int) $equipment->getIsEnable() === 1) {
-                $enabled++;
-            }
-            $equipmentCommands = $equipment->getCmd();
-            $commands += is_array($equipmentCommands) ? count($equipmentCommands) : 0;
+        if (!is_string($_separator) || !in_array($_separator, array('<br>', '<br/>', '<br />', "\n"), true)) {
+            $_separator = '<br>';
         }
-
-        $lines = array(
-            '<!-- JEEDOM_PLUGIN_DIAGNOSTICS_START -->',
-            __('Équipements configurés', __FILE__) . ' : ' . count($equipments),
-            __('Équipements actifs', __FILE__) . ' : ' . $enabled,
-            __('Commandes configurées', __FILE__) . ' : ' . $commands,
-            '<!-- JEEDOM_PLUGIN_DIAGNOSTICS_END -->'
-        );
-
+        $unknown = __('Inconnu', __FILE__);
+        $isTrue = static function ($value) { return in_array($value, array(true, 1, '1'), true); };
+        $isFalse = static function ($value) { return in_array($value, array(false, 0, '0'), true); };
+        $integer = static function ($value, $min, $max) {
+            if ((!is_int($value) && !is_string($value)) || preg_match('/^[0-9]{1,10}$/D', (string) $value) !== 1) {
+                return null;
+            }
+            $number = (int) $value;
+            return $number >= $min && $number <= $max ? $number : null;
+        };
+        $present = static function ($value) { return is_string($value) && trim($value) !== ''; };
+        $format = static function ($value, $kind, $args = array()) use ($unknown, $isTrue, $isFalse, $integer) {
+            switch ($kind) {
+                case 'bool':
+                    return $isTrue($value) ? __('Oui', __FILE__) : ($isFalse($value) ? __('Non', __FILE__) : $unknown);
+                case 'number':
+                    $number = $integer($value, $args[0], $args[1]);
+                    return $number === null ? $unknown : (string) $number;
+            }
+            return $unknown;
+        };
+        $equipments = eqLogic::byType(__CLASS__);
+        $equipments = is_array($equipments) ? $equipments : array();
+        $lines = array('<!-- JEEDOM_PLUGIN_DIAGNOSTICS_START -->', __('Équipements configurés', __FILE__) . ' : ' . count($equipments));
+        $total = 0;
+        $invalid = 0;
+        foreach ($equipments as $equipment) {
+            $items = array($equipment);
+            foreach ($items as $item) {
+                $value = $item->getConfiguration('connection_type', '');
+                $matched = is_string($value) && in_array($value, array('AES'), true);
+                if ($matched) { $total++; }
+            }
+        }
+        $lines[] = __('Profils AES', __FILE__) . ' : ' . ($invalid > 0 ? $unknown : (string) $total);
+        $total = 0;
+        $invalid = 0;
+        foreach ($equipments as $equipment) {
+            $items = array($equipment);
+            foreach ($items as $item) {
+                $value = $item->getConfiguration('connection_type', '');
+                $matched = is_string($value) && in_array($value, array('TLS'), true);
+                if ($matched) { $total++; }
+            }
+        }
+        $lines[] = __('Profils TLS', __FILE__) . ' : ' . ($invalid > 0 ? $unknown : (string) $total);
+        $total = 0;
+        $invalid = 0;
+        foreach ($equipments as $equipment) {
+            $items = array($equipment);
+            foreach ($items as $item) {
+                $value = $item->getConfiguration('connection_type', '');
+                $matched = is_string($value) && in_array($value, array('AES', 'TLS'), true);
+                if (!$matched) { $total++; }
+            }
+        }
+        $lines[] = __('Profils inconnus', __FILE__) . ' : ' . ($invalid > 0 ? $unknown : (string) $total);
+        $lines[] = __('Vérification TLS du callback', __FILE__) . ' : ' . $format(config::byKey('callback_verify_tls', __CLASS__, ''), 'bool', array());
+        $lines[] = __('Traces protocole', __FILE__) . ' : ' . $format(config::byKey('debug_protocol', __CLASS__, ''), 'bool', array());
+        $lines[] = __('Reconnexion (s)', __FILE__) . ' : ' . $format(config::byKey('reconnect_interval', __CLASS__, ''), 'number', array(5, 300));
+        $lines[] = __('Watchdog (s)', __FILE__) . ' : ' . $format(config::byKey('watchdog_interval', __CLASS__, ''), 'number', array(60, 3600));
+        $lines[] = '<!-- JEEDOM_PLUGIN_DIAGNOSTICS_END -->';
         return implode($_separator, $lines) . $_separator;
     }
 
-    public static $_pluginVersion = '0.11.0';
+    public static $_pluginVersion = '0.12.0';
     public static $_widgetPossibility = array('custom' => true, 'custom::layout' => true);
     public static $_encryptConfigKey = array('homeconnect_password', 'daemon_token');
 
